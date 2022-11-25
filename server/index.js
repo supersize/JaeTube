@@ -51,7 +51,7 @@ What is NODE_ENV?
 NODE_ENV is an environment variable that stands for node environment in express server.
 IF YOU WANT TO USE DEV, PUT "development"
 */
-process.env.NODE_ENV === "production"
+process.env.NODE_ENV = "production"
 if (process.env.NODE_ENV === "production") {
 
   // Set static folder   
