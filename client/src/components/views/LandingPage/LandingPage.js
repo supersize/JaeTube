@@ -27,7 +27,8 @@ function LandingPage() {
         })
     }, [])
     
-    // console.log("ctxPath : ", location);
+    console.log("process.env : ", process.env);
+    console.log("process.env.REACT_APP_HOME_URL : ", process.env.REACT_APP_HOME_URL);
 
     const renderCards = Video.map((video, index) => {
         var minute = Math.floor(video.duration / 60);
@@ -36,7 +37,8 @@ function LandingPage() {
             <Col lg={6} md={10} xs={24}>
                 <div style={{position: 'relative'}}>
                     <a href={`/video/${video._id}`}>
-                        <img style={{width: '100%'}} src={`http://localhost:3001/${video.thumbnail}`} />
+                        {/* <img style={{width: '100%'}} src={`http://localhost:3001/${video.thumbnail}`} /> */}
+                        <img style={{width: '100%'}} src={`http://18.117.21.81:3001${video.thumbnail}`} />
                         <div className='duration'>
                             <span>{minute} : {seconds}</span>
                         </div>
