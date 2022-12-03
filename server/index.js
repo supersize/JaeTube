@@ -7,6 +7,8 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
 const config = require("./config/key");
+require("dotenv").config();
+console.log("process.env : ",process.env);
 
 // const mongoose = require("mongoose");
 // mongoose
