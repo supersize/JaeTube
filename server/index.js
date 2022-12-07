@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -7,7 +8,6 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
 const config = require("./config/key");
-require("dotenv").config();
 console.log("process.env : ",process.env);
 
 // const mongoose = require("mongoose");
