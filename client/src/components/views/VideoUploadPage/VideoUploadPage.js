@@ -233,7 +233,7 @@ function VideoUploadPage(props) {
                     */}
                     <div>
                         <img style={{width: '300px', height: '100%', display: "none"}} 
-                            src={`http://localhost:3001/${ThumbnailPath}`} alt="thumbnail"/>
+                            src={`http://18.117.21.81:3001/${ThumbnailPath}`} alt="thumbnail"/>
                     </div>
                     {
                     /*ThumbnailPath && // {ThumbnailPath && ~~} : ThumbnailPath이 있을때만 ~~ 실행해라. 

@@ -49,7 +49,7 @@ function MyVideoListPage() {
                 <div style={{position: 'relative'}}>
                     <div className='delete-btn'><DeleteOutlined onClick={() => deleteVideo(video._id, video.title)}/></div>
                     <a href={`/video/${video._id}`}>
-                        <img style={{width: '100%'}} src={`http://localhost:3001/${video.thumbnail}`} />
+                        <img style={{width: '100%'}} src={`http://18.117.21.81:3001/${video.thumbnail}`} />
                         <div className='duration'>
                             <span>{minute} : {seconds}</span>
                         </div>

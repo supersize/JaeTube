@@ -48,7 +48,7 @@ function MySubscriptionListpage() {
                                     <Col lg={6} md={8} xs={24}>
                                         <div style={{position: 'relative'}}>
                                             <a href={`/video/${video._id}`}>
-                                                <img style={{width: '100%'}} src={`http://localhost:3001/${video.thumbnail}`} />
+                                                <img style={{width: '100%'}} src={`http://18.117.21.81:3001/${video.thumbnail}`} />
                                                 <div className='duration'>
                                                     <span>{minute} : {seconds}</span>
                                                 </div>
