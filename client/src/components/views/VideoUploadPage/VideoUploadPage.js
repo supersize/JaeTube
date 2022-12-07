@@ -123,6 +123,9 @@ function VideoUploadPage(props) {
     const onSubmit = (e) => {
         e.preventDefault();
 
+        alert('sorry, "video submit" is not available on production mode. Server cannot handle it.');
+        return false;
+
         if (!form.file) {
             alert("Please upload a video.");
             return false;
