@@ -17,6 +17,7 @@ console.log("process.env : ",process.env);
 //   .catch(err => console.error(err));
 
 const mongoose = require("mongoose");
+console.log('config.mongoURI : ', config.mongoURI);
 const connect = mongoose.connect(config.mongoURI + "",
   {
     useNewUrlParser: true, useUnifiedTopology: true,
