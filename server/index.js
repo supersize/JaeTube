@@ -8,8 +8,6 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
 const config = require("./config/key");
-console.log("process.env : ",process.env);
-
 // const mongoose = require("mongoose");
 // mongoose
 //   .connect(config.mongoURI, { useNewUrlParser: true })
@@ -17,7 +15,6 @@ console.log("process.env : ",process.env);
 //   .catch(err => console.error(err));
 
 const mongoose = require("mongoose");
-console.log('config.mongoURI : ', config.mongoURI);
 const connect = mongoose.connect(config.mongoURI + "",
   {
     useNewUrlParser: true, useUnifiedTopology: true,
