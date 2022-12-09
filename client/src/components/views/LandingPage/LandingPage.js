@@ -9,8 +9,6 @@ const { Meta } = Card;
 function LandingPage() {
     const [Video, setVideo] = useState([]);
 
-    // console.log("ctxPath : ", location.host);
-
     // useEffect : dom이 최초 생성시 안에 코드가 실행됨.
     // 두번째 파라미터가 없다면 코드 계속실행됨. 그냥 빈칸이라면 최초 한번만 실행됨. 
     useEffect(() => {
@@ -22,13 +20,8 @@ function LandingPage() {
             }
             
             setVideo(res.data.videos);
-            console.log("get vidoes!", res.data);
-
         })
     }, [])
-    
-    console.log("process.env : ", process.env);
-    console.log("process.env.REACT_APP_HOME_URL : ", process.env.REACT_APP_HOME_URL);
 
     const renderCards = Video.map((video, index) => {
         var minute = Math.floor(video.duration / 60);
