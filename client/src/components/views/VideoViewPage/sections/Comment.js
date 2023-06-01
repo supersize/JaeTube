@@ -3,43 +3,54 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import SingleComment from './SingleComment'
 import ReplyComment from './ReplyComment'
+import { auth } from "../../../../_actions/user_actions";
+import { useDispatch } from "react-redux";
 
 function Comment(props) {
     const commentList = props.commentList;
     const user = useSelector(state => state.user )
     const [CommentValue, setCommentValue] = useState("")
-    console.log("comment user :", user);
+
+    const dispatch = useDispatch();
+
     const handleChange = (e) => {
         setCommentValue(e.currentTarget.value)
     }
 
     const onSubmit = (e) => {
         e.preventDefault();
-        
-        let comment = {
-            content: CommentValue,
-            writer: user.userData._id,
-            videoId: props.videoId
-        }
 
-        Axios.post('/api/comment/saveComment', comment)
-            .then((res) => {
-                if (!res.data.success) {
-                    alert("failed to save your comment.")
+        dispatch(auth())
+            .then(res => {
+                if(!res.payload.isAuth) {
+                    alert("login is needed.");
                     return false;
                 }
-
-                console.log("success to comment : ", res.data.result)
-                props.renewComments(res.data.result);
-                setCommentValue("")
-            });
+                let comment = {
+                    content: CommentValue,
+                    writer: user.userData._id,
+                    videoId: props.videoId
+                }
+        
+                Axios.post('/api/comment/saveComment', comment)
+                    .then((res) => {
+                        if (!res.data.success) {
+                            alert("failed to save your comment.")
+                            return false;
+                        }
+        
+                        console.log("success to comment : ", res.data.result)
+                        props.renewComments(res.data.result);
+                        setCommentValue("")
+                    });
+            })
     }
 
 
   return (
     <div>
         <br/>
-        <p>Replies</p>
+        <p>comments</p>
         <hr/>
                             
         {commentList && commentList.map((comment, index) => {

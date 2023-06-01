@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux'
 import { Comment, Button, Input, Avatar } from "antd";
 import Axios from 'axios';
 import LikeDislikes from './LikeDislikes';
+import { auth } from "../../../../_actions/user_actions";
+import { useDispatch } from "react-redux";
 
 const { TextArea } = Input;
 
@@ -10,6 +12,7 @@ function SingleComment(props) {
     const [OpenReply, setOpenReply] = useState(false)
     const user = useSelector(state => state.user )
     const [CommentValue, setCommentValue] = useState("")
+    const dispatch = useDispatch();
 
     const onClickReplyOpen = (e) => {
         setOpenReply(!OpenReply)
@@ -24,24 +27,33 @@ function SingleComment(props) {
     const onSubmit = (e) => {
         e.preventDefault();
 
-        let comment = {
-            content: CommentValue,
-            writer: user.userData._id,
-            videoId: props.comment.videoId,
-            responseTo: props.comment._id
-        }
-
-        Axios.post('/api/comment/saveComment', comment)
-            .then((res) => {
-                if (!res.data.success) {
-                    alert("failed to save your comment.")
+        dispatch(auth())
+            .then(res => {
+                if(!res.payload.isAuth){
+                    alert("login is needed.");
                     return false;
                 }
+                
+                let comment = {
+                    content: CommentValue,
+                    writer: user.userData._id,
+                    videoId: props.comment.videoId,
+                    responseTo: props.comment._id
+                }
+        
+                Axios.post('/api/comment/saveComment', comment)
+                    .then((res) => {
+                        if (!res.data.success) {
+                            alert("failed to save your comment.")
+                            return false;
+                        }
+        
+                        props.renewComments(res.data.result);
+                        setCommentValue("")
+                        setOpenReply(false)
+                    });
+            })
 
-                props.renewComments(res.data.result);
-                setCommentValue("")
-                setOpenReply(false)
-            });
     }
 
     const actions = [

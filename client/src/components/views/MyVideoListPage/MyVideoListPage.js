@@ -11,7 +11,6 @@ function MyVideoListPage() {
     const [Video, setVideo] = useState([]);
 
     const param =  {userId : localStorage.getItem('userId') }
-    console.log(" MyVideo ");
     useEffect(() => {
       Axios.post('/api/video/getMyVideos', param)
         .then(res => {
@@ -49,7 +48,8 @@ function MyVideoListPage() {
                 <div style={{position: 'relative'}}>
                     <div className='delete-btn'><DeleteOutlined onClick={() => deleteVideo(video._id, video.title)}/></div>
                     <a href={`/video/${video._id}`}>
-                        <img style={{width: '100%'}} src={`http://18.117.21.81:3001/${video.thumbnail}`} />
+                        {/* <img style={{width: '100%'}} src={`http://18.117.21.81:3001/${video.thumbnail}`} /> */}
+                        <img style={{width: '100%'}} src={`http://localhost:5001/${video.thumbnail}`} />
                         <div className='duration'>
                             <span>{minute} : {seconds}</span>
                         </div>
@@ -66,7 +66,7 @@ function MyVideoListPage() {
     return (
         <div style={{width: '85%', margin: '1rem'}}>
             <Title level={2}>
-                My Vdieo Page
+                My Video Page
             </Title>
             <hr/>
             <Row gutter={[32, 16]}>

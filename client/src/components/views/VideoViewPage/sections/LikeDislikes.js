@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { Tooltip } from "antd";
 import { LikeOutlined, DislikeOutlined } from '@ant-design/icons';
 import Axios from 'axios';
+import { auth } from "../../../../_actions/user_actions";
+import { useDispatch } from "react-redux";
 
 function LikeDislikes(props) {
     const [Likes, setLikes] = useState(0);
     const [LikeAction, setLikeAction] = useState(null);
     const [Dislikes, setDislikes] = useState(0)
     const [DislikeAction, setDislikeAction] = useState(null);
+    const dispatch = useDispatch();
 
     let likeDislike = {
         userId: localStorage.getItem('userId')
@@ -62,67 +65,82 @@ function LikeDislikes(props) {
     }, [])
 
     const doLike = (e) => {
-        if (!LikeAction) {
-            Axios.post('/api/like/upLike', likeDislike)
-                .then(res => {
-                    if(!res.data.success) {
-                        alert("failed to do a like");
-                        return false;
-                    }
-
-                    setLikes(Likes + 1);
-                    setLikeAction('liked');
-
-                    if (DislikeAction) {
-                        setDislikeAction(null);
-                        setDislikes(Dislikes - 1);
-                    }
-                })
-        }
-        else {
-            Axios.post('/api/like/unlike', likeDislike)
-                .then(res => {
-                    if(!res.data.success) {
-                        alert("failed to unlike");
-                        return false;
-                    }
-
-                    setLikes(Likes - 1);
-                    setLikeAction(null);
-                })
-        }
+        
+        dispatch(auth())
+            .then(response => {
+                if(!response.payload.isAuth){
+                    alert("login is needed.");
+                    return false;
+                }
+                if (!LikeAction) {
+                    Axios.post('/api/like/upLike', likeDislike)
+                        .then(res => {
+                            if(!res.data.success) {
+                                alert("failed to do a like");
+                                return false;
+                            }
+        
+                            setLikes(Likes + 1);
+                            setLikeAction('liked');
+        
+                            if (DislikeAction) {
+                                setDislikeAction(null);
+                                setDislikes(Dislikes - 1);
+                            }
+                        })
+                }
+                else {
+                    Axios.post('/api/like/unlike', likeDislike)
+                        .then(res => {
+                            if(!res.data.success) {
+                                alert("failed to unlike");
+                                return false;
+                            }
+        
+                            setLikes(Likes - 1);
+                            setLikeAction(null);
+                        })
+                }
+            });
     }
 
     const doDislike = (e) => {
-        if (!DislikeAction) {
-            Axios.post('/api/like/upDislike', likeDislike)
-                .then(res => {
-                    if(!res.data.success) {
-                        alert("failed to do a like");
-                        return false;
-                    }
-
-                    setDislikes(Dislikes + 1);
-                    setDislikeAction('disliked');
-
-                    if (LikeAction) {
-                        setLikeAction(null);
-                        setLikes(Likes - 1);
-                    }
-                })
-        }
-        else {
-            Axios.post('/api/like/unDislike', likeDislike)
-                .then(res => {
-                    if(!res.data.success) {
-                        alert("failed to unDislike");
-                        return false;
-                    }
-
-                    setDislikes(Dislikes - 1);
-                    setDislikeAction(null);
-                })
-        }
+        dispatch(auth())
+            .then(response => {
+                if(!response.payload.isAuth){
+                    alert("login is needed.");
+                    return false;
+                }
+                if (!DislikeAction) {
+                    Axios.post('/api/like/upDislike', likeDislike)
+                        .then(res => {
+                            if(!res.data.success) {
+                                alert("failed to do a like");
+                                return false;
+                            }
+        
+                            setDislikes(Dislikes + 1);
+                            setDislikeAction('disliked');
+        
+                            if (LikeAction) {
+                                setLikeAction(null);
+                                setLikes(Likes - 1);
+                            }
+                        })
+                }
+                else {
+                    Axios.post('/api/like/unDislike', likeDislike)
+                        .then(res => {
+                            if(!res.data.success) {
+                                alert("failed to unDislike");
+                                return false;
+                            }
+        
+                            setDislikes(Dislikes - 1);
+                            setDislikeAction(null);
+                        })
+                }
+            });
     }
 
   return (

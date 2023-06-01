@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 const { Title } = Typography;
 
 function LoginPage(props) {
+  console.log("props : ", props);
   const dispatch = useDispatch();
   const rememberMeChecked = localStorage.getItem("rememberMe") ? true : false;
 

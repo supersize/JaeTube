@@ -17,7 +17,7 @@ function ReplyComment(props) {
       })
 
       setCommentCnt(commentCnt);
-    }, [commentList]) // "commentList" in the last parameter means useEffect should be restarted when "commentList" has got changed.
+    }, [commentList]) // "commentList" means useEffect should be restarted when "commentList" has got changed.
     
     
     const renderReplyComment = (parentCmtId) => 
