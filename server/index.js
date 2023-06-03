@@ -24,7 +24,7 @@ const connect = mongoose.connect(config.mongoURI + "",
   .catch(err => console.log(err));
 
 // app.use(cors({origin : 'http://18.117.21.81/'}))
-app.use(cors({origin : 'http://localhost:5001/'}))
+app.use(cors({origin : ['http://localhost:5001/', 'http://18.117.21.81/']}))
 
 //to not get any deprecation warning or error
 //support parsing of application/x-www-form-urlencoded post data
