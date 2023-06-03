@@ -31,7 +31,7 @@ function LandingPage() {
                 <div style={{position: 'relative'}}>
                     <a href={`/video/${video._id}`}>
                         {/* <img style={{width: '100%'}} src={`http://localhost:5001/${video.thumbnail}`} /> */}
-                        <img style={{width: '100%'}} src={`http://18.117.21.81:8000/${video.thumbnail}`} />
+                        <img style={{width: '100%'}} src={`http://18.117.21.81/${video.thumbnail}`} />
                         <div className='duration'>
                             <span>{minute} : {seconds}</span>
                         </div>

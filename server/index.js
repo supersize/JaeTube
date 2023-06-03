@@ -23,8 +23,8 @@ const connect = mongoose.connect(config.mongoURI + "",
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
 
-// app.use(cors({origin : 'http://18.117.21.81/'}))
-app.use(cors({origin : ['http://localhost:5001/', 'http://18.117.21.81/']}))
+app.use(cors({origin : 'http://18.117.21.81'}))
+// app.use(cors({origin : 'http://localhost:5001/'}))
 
 //to not get any deprecation warning or error
 //support parsing of application/x-www-form-urlencoded post data
@@ -65,7 +65,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // const port = process.env.PORT || 5001 // 서버에서 기본 포트 설정 후 변경해야할듯... aws 기본 포트는 뭐고 어떻게 변경할까?
-const port = process.env.PORT || 8000 // 8000은 aws 기본 포트(?)
+const port = process.env.PORT  // 8000은 aws 기본 포트(?)
 // const port = process.env.PORT || 80
 // const port = 6000
 
