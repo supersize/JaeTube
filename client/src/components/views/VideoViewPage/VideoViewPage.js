@@ -74,7 +74,7 @@ function VideoViewPage(props) {
                 <Row gutter={[16, 16]}>
                     <Col lg={18} xs={24}>
                         <div style={{ width: '100%', padding: '3rem 4rem'}}>
-                            <video style={{ width: '100%', height: '50vh'}} src={`http://18.117.21.81/${Video.filePath}`} controls/>
+                            <video style={{ width: '100%', height: '50vh'}} src={`http://18.117.21.81:8000/${Video.filePath}`} controls/>
                             {/* <video style={{ width: '100%', height: '50vh'}} src={`http://localhost:5001/${Video.filePath}`} controls/> */}
                             <List.Item
                                 actions={[ <LikeDislikes videoId={video.videoId} />, subscribeButton]}>
