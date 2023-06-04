@@ -26,8 +26,8 @@ function SideVideo(props) {
             <a href={`/video/${SideVideo._id}`} key={index}> {/* key는 에러나서 index 값줌. */}
                 <div key={index} style={{ display: 'flex', marginBottom: "1rem", padding: '0.2rem' }}>
                     <div style={{ width: '40%', marginRight: "1rem"}}>
-                            {/* <img style={{ width: '100%', height: '100%'}} src={`http://18.117.21.81:3001/${SideVideo.thumbnail}`} /> */}
-                            <img style={{ width: '100%', height: '100%'}} src={`http://localhost:5001/${SideVideo.thumbnail}`} />
+                            <img style={{ width: '100%', height: '100%'}} src={`http://18.117.21.81:3001/${SideVideo.thumbnail}`} />
+                            {/* <img style={{ width: '100%', height: '100%'}} src={`http://localhost:5001/${SideVideo.thumbnail}`} /> */}
                     </div>
 
                     <div style={{ width: "50%" }}>
