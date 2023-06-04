@@ -65,7 +65,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // const port = process.env.PORT || 5001 // 서버에서 기본 포트 설정 후 변경해야할듯... aws 기본 포트는 뭐고 어떻게 변경할까?
-const port = process.env.PORT || 80 // 8000은 aws 기본 포트(?)
+const port = process.env.PORT || 3001 // 8000은 aws 기본 포트(?)
 // const port = process.env.PORT || 80
 // const port = 6000
 
