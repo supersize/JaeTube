@@ -1,5 +1,5 @@
 Hello, My Friends  
-Thank you for having interest in this repository ! 
+Thank you for having interest in JaeTube repository! 
 
 To use this application, 
 
